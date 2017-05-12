@@ -1,0 +1,58 @@
+{% set settings = {} %}
+
+{% if header.squidgrid %}
+    {% set settings =  header.squidgrid %}
+{% endif %}
+
+{% if page.header.squidgrid %}
+    {% set settings = settings|merge(page.header.squidgrid) %}
+{%  endif %}
+
+{% set settings = config.get('plugins.squidgrid')|merge(settings) %}
+{% if settings.unique_id %}{% set unique_id = settings.unique_id %}{% else %}{% set unique_id = 'sg-' ~ random_string(10) %}{% endif %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#{{ unique_id }}").mediaBoxes({
+            boxesToLoadStart: {{ settings.boxesToLoadStart|default(8) }},
+            boxesToLoad: {{ settings.boxesToLoad|default(4) }},
+            lazyLoad: {{ settings.lazyLoad|default('true') }},
+            horizontalSpaceBetweenBoxes: '{{ settings.horizontalSpaceBetweenBoxes|default(15) }}',
+            verticalSpaceBetweenBoxes: '{{ settings.verticalSpaceBetweenBoxes|default(15) }}',
+            columnWidth: '{{ settings.columnWidth|default('auto') }}',
+            columns: {{ settings.columns|default(4) }},
+            resolutions: {{ settings.resolutions }},
+            multipleFilterLogic: {{ settings.multipleFilterLogic|default('AND') }},
+            filterContainer: {{ settings.pause|filterContainer('#filter') }},
+            search: {{ settings.search|default('') }},
+            searchTarget: {{ settings.searchTarget|default('.media-box-title') }},
+            sortContainer: {{ settings.sortContainer|default('') }},
+            minBoxesPerFilter: {{ settings.minBoxesPerFilter|default(0) }},
+            waitUntilThumbWithRatioLoads: {{ settings.waitUntilThumbWithRatioLoads|default('true') }},
+            waitForAllThumbsNoMatterWhat: {{ settings.waitForAllThumbsNoMatterWhat|default('false') }},
+            thumbnailOverlay: {{ settings.thumbnailOverlay|default('true') }},
+            overlayEffect: {{ settings.overlayEffect|default('fade') }},
+            overlaySpeed: {{ settings.overlaySpeed|default(200) }},
+            overlayEasing: {{ settings.overlayEasing|default('default') }},
+            showOnlyLoadedBoxesInPopup: {{ settings.showOnlyLoadedBoxesInPopup|default('false') }},
+            considerFilteringInPopup: {{ settings.considerFilteringInPopup|default('true') }},
+            deepLinkingOnPopup: {{ settings.deepLinkingOnPopup|default('true') }},
+            deepLinkingOnFilter: {{ settings.deepLinkingOnFilter|default('true') }},
+            deepLinkingOnSearch: {{ settings.deepLinkingOnSearch|default('false') }},
+            gallery: {{ settings.gallery|default('true') }},
+            LoadingWord: {{ settings.enableDrag|default('Loading...') }},
+            loadMoreWord: {{ settings.enableDrag|default('Load More') }},
+            noMoreEntriesWord: {{ settings.enableDrag|default('No More Entries') }},
+
+        });
+    });
+</script>
+<!-- The grid with media boxes -->
+<div id="{{ unique_id }}">
+	{% for box in grid %}
+	<!-- --------- MEDIA BOX MARKUP --------- -->
+	<div class="media-box {{ category }}">
+		{{ box.content }}
+	</div>
+	{% endfor %}
+</div>

@@ -1,0 +1,31 @@
+name: Squid Grid
+version: 0.1.0
+description: This plugin allows you to create various types of grids within your grav templates.
+icon: plug
+author:
+  name: URBANSQUID
+  email: ric@urbansquid.london
+homepage: https://github.com/ricardo118/grav-plugin-squid-grid
+demo: http://demo.yoursite.com
+keywords: grav, plugin, etc
+bugs: https://github.com/ricardo118/grav-plugin-squid-grid/issues
+docs: https://github.com/ricardo118/grav-plugin-squid-grid/blob/develop/README.md
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+    text_var:
+      type: text
+      label: Text Variable
+      help: Text to add to the top of a page

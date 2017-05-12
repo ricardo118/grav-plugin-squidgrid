@@ -1,0 +1,51 @@
+title: squidgrid
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        blog:
+          type: tab
+          title: Grid
+          fields:
+            grid:
+              name: grid
+              type: list
+              style: vertical
+              label: Grid
+              fields:
+                .title:
+                  type: text
+                  label: Title
+                .content:
+                  type: textarea
+                  label: Content
+                .url:
+                  type: pages
+                  size: medium
+                  classes: fancy
+                  label: Read more URL
+                  show_all: false
+                  show_modular: true
+                  show_root: false
+                .enabled:
+                  type: toggle
+                  label: Replace with Image
+                  help: Replace the whole grid with a picture. URL will be used for click through.
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
+                .image:
+                  type: file
+                  label: Image Upload
+                  destination: '@self'
+                  multiple: false
+                  filesize: 1
+                  accept:
+                    - image/*
