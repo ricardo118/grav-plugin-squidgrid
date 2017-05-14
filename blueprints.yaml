@@ -12,20 +12,233 @@ bugs: https://github.com/ricardo118/grav-plugin-squid-grid/issues
 docs: https://github.com/ricardo118/grav-plugin-squid-grid/blob/develop/README.md
 license: MIT
 
+
 form:
-  validation: strict
+  validation: loose
   fields:
-    enabled:
-      type: toggle
-      label: Plugin status
-      highlight: 1
-      default: 0
-      options:
-        1: Enabled
-        0: Disabled
-      validate:
-        type: bool
-    text_var:
-      type: text
-      label: Text Variable
-      help: Text to add to the top of a page
+
+    tabs:
+      type: tabs
+      active: 1
+      class: subtle
+
+      fields:
+
+        configuration:
+          type: tab
+          title: PLUGIN_SQUIDGRID.SECTION_CONFIGURATION
+          fields:
+
+            enabled:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.PLUGIN_STATUS
+              hightlight: 1
+              default: 1
+              options:
+                1: PLUGIN_SQUIDGRID.ENABLED
+                0: PLUGIN_SQUIDGRID.DISABLED
+              validate:
+                required: true
+                type: bool
+            boxesToLoadStart:
+              type: text
+              size: x-small
+              append: PLUGIN_SQUIDGRID.BOXES
+              label: PLUGIN_SQUIDGRID.BOXES_LOAD_START
+              help: PLUGIN_SQUIDGRID.BOXES_LOAD_START_HELP
+              placeholder: "8"
+              validate:
+                required: true
+                type: number
+            boxesToLoad:
+              type: text
+              size: x-small
+              append: PLUGIN_SQUIDGRID.BOXES
+              label: PLUGIN_SQUIDGRID.BOXES_LOAD
+              help: PLUGIN_SQUIDGRID.BOXES_LOAD_HELP
+              placeholder: "4"
+              validate:
+                required: true
+                type: number
+            columns:
+              type: text
+              size: x-small
+              append: PLUGIN_SQUIDGRID.COLUMN
+              label: PLUGIN_SQUIDGRID.COLUMNS
+              help: PLUGIN_SQUIDGRID.COLUMNS_HELP
+              placeholder: "4"
+              validate:
+                required: true
+                type: number
+            lazyLoad:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.LAZY_LOAD
+              help: PLUGIN_SQUIDGRID.LAZY_LOAD_HELP
+              hightlight: 1
+              default: 1
+              options:
+                1: PLUGIN_SQUIDGRID.ENABLED
+                0: PLUGIN_SQUIDGRID.DISABLED
+              validate:
+                type: bool
+            horizontalSpaceBetweenBoxes:
+              type: range
+              append: 'px'
+              label: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE
+              help: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE_HELP
+              classes: x-small
+              default: 15
+              validate:
+                  min: 0
+                  max: 100
+            verticalSpaceBetweenBoxes:
+              type: range
+              append: 'px'
+              label: PLUGIN_SQUIDGRID.VERTICAL_SPACE
+              help: PLUGIN_SQUIDGRID.VERTICAL_SPACE_HELP
+              classes: x-small
+              default: 15
+              validate:
+                  min: 0
+                  max: 100
+            overlayEffect:
+              type: select
+              label: PLUGIN_SQUIDGRID.OVERLAY_EFFECT
+              help: PLUGIN_SQUIDGRID.OVERLAY_EFFECT_HELP
+              size: medium
+              default: fade
+              options:
+                fade: PLUGIN_SQUIDGRID.FADE
+                push-up: PLUGIN_SQUIDGRID.PUSH_UP
+                push-down: PLUGIN_SQUIDGRID.PUSH_DOWN
+                'push-up-100%': PLUGIN_SQUIDGRID.PUSH_UP_100
+                'push-down-100%': PLUGIN_SQUIDGRID.PUSH_DOWN_100
+                reveal-top: PLUGIN_SQUIDGRID.REVEAL_TOP
+                reveal-bottom: PLUGIN_SQUIDGRID.REVEAL_BOTTOM
+                'reveal-top-100%': PLUGIN_SQUIDGRID.REVEAL_TOP_100
+                'reveal-bottom-100%': PLUGIN_SQUIDGRID.REVEAL_BOTTOM_100
+                direction-aware: PLUGIN_SQUIDGRID.DIRECTION_AWARE
+                direction-aware-fade: PLUGIN_SQUIDGRID.DIRECTION_AWARE_FADE
+                direction-right: PLUGIN_SQUIDGRID.DIRECTION_RIGHT
+                direction-left: PLUGIN_SQUIDGRID.DIRECTION_LEFT
+                direction-top: PLUGIN_SQUIDGRID.DIRECTION_TOP
+                direction-bottom: PLUGIN_SQUIDGRID.DIRECTION_BOTOM
+
+        resolutions_tab:
+          type: tab
+          title: PLUGIN_SQUIDGRID.RESOLUTIONS
+          fields:
+
+            resolutions:
+              name: PLUGIN_SQUIDGRID.RESOLUTIONS
+              type: list
+              style: vertical
+              label: PLUGIN_SQUIDGRID.RESOLUTIONS
+              fields:
+                .mob_maxwidth:
+                  type: text
+                  size: x-small
+                  label: PLUGIN_SQUIDGRID.MAX_WIDTH
+                  help: PLUGIN_SQUIDGRID.MAX_WIDTH_HELP
+                  placeholder: '960'
+                  append: 'px'
+                  validate:
+                    type: number
+                    required: true
+                .mob_columns:
+                  type: text
+                  size: x-small
+                  append: PLUGIN_SQUIDGRID.COLUMN
+                  label: PLUGIN_SQUIDGRID.COLUMNS
+                  help: PLUGIN_SQUIDGRID.COLUMNS_HELP
+                  placeholder: "4"
+                  validate:
+                    required: true
+                    type: number
+                .mob_horizontalSpaceBetweenBoxes:
+                  type: range
+                  append: 'px'
+                  label: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE
+                  help: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE_HELP
+                  classes: x-small
+                  default: 15
+                  validate:
+                    min: 0
+                    max: 100
+                .mob_verticalSpaceBetweenBoxes:
+                  type: range
+                  append: 'px'
+                  label: PLUGIN_SQUIDGRID.VERTICAL_SPACE
+                  help: PLUGIN_SQUIDGRID.VERTICAL_SPACE_HELP
+                  classes: x-small
+                  default: 15
+                  validate:
+                      min: 0
+                      max: 100
+            prepend_domain:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.PREPEND_DOMAIN
+              help: PLUGIN_SQUIDGRID.PREPEND_DOMAIN_HELP
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
+            hide_alias:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.HIDE_ALIAS
+              help: PLUGIN_SQUIDGRID.HIDE_ALIAS_HELP
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
+            track_disabled_js:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.TRACK_DISABLED_JS
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
+
+        advanced:
+          type: tab
+          title: PLUGIN_SQUIDGRID.SECTION_ADVANCED
+          fields:
+
+            track_custom_vars:
+              type: array
+              size: large
+              label: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS
+              help: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_HELP
+              placeholder_key: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_PLACEHOLDER_1
+              placeholder_value: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_PLACEHOLDER_2
+            do_not_track:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.DO_NOT_TRACK
+              help: PLUGIN_SQUIDGRID.DO_NOT_TRACK_HELP
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
+            disable_tracking_cookies:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.DISABLE_TRACKING_COOKIES
+              help: PLUGIN_SQUIDGRID.DISABLE_TRACKING_COOKIES_HELP
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
