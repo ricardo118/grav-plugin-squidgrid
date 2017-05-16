@@ -123,6 +123,65 @@ form:
                 direction-left: PLUGIN_SQUIDGRID.DIRECTION_LEFT
                 direction-top: PLUGIN_SQUIDGRID.DIRECTION_TOP
                 direction-bottom: PLUGIN_SQUIDGRID.DIRECTION_BOTOM
+            overlaySpeed:
+              type: range
+              append: 'ms'
+              label: PLUGIN_SQUIDGRID.OVERLAY_SPEED
+              help: PLUGIN_SQUIDGRID.OVERLAY_SPEED_HELP
+              classes: x-small
+              default: 200
+              validate:
+                  min: 0
+                  max: 4000
+            overlayEasing:
+              type: select
+              label: PLUGIN_SQUIDGRID.OVERLAY_EASING
+              description: PLUGIN_SQUIDGRID.OVERLAY_EASING_HELP
+              size: medium
+              default: default
+              options:
+                'default': PLUGIN_SQUIDGRID.DEFAULT
+                'easeInCubic': PLUGIN_SQUIDGRID.EASEINCUBIC
+                'easeOutCubic': PLUGIN_SQUIDGRID.EASEOUTCUBIC
+                'easeInOutCubic': PLUGIN_SQUIDGRID.EASEINOUTCUBIC
+                'easeInCirc': PLUGIN_SQUIDGRID.EASEINCIRC
+                'easeOutCirc': PLUGIN_SQUIDGRID.EASEOUTCIRC
+                'easeInOutCirc': PLUGIN_SQUIDGRID.EASEINOUTCIRC
+                'easeInExpo': PLUGIN_SQUIDGRID.EASEINEXPO
+                'easeOutExpo': PLUGIN_SQUIDGRID.EASEOUTEXPO
+                'easeInOutExpo': PLUGIN_SQUIDGRID.EASEINOUTEXPO
+                'easeInQuad': PLUGIN_SQUIDGRID.EASEINQUAD
+                'easeOutQuad': PLUGIN_SQUIDGRID.EASEOUTQUAD
+                'easeInOutQuad': PLUGIN_SQUIDGRID.EASEINOUTQUAD
+                'easeInQuart': PLUGIN_SQUIDGRID.EASEINQUART
+                'easeOutQuart': PLUGIN_SQUIDGRID.EASEOUTQUART
+                'easeInOutQuart': PLUGIN_SQUIDGRID.EASEINOUTQUART
+                'easeInQuint': PLUGIN_SQUIDGRID.EASEINQUINT
+                'easeOutQuint': PLUGIN_SQUIDGRID.EASEOUTQUINT
+                'easeInOutQuint': PLUGIN_SQUIDGRID.EASEINOUTQUINT
+                'easeInSine': PLUGIN_SQUIDGRID.EASEINSINE
+                'easeOutSine': PLUGIN_SQUIDGRID.EASEOUTSINE
+                'easeInOutSine': PLUGIN_SQUIDGRID.EASEINOUTSINE
+                'easeInBack': PLUGIN_SQUIDGRID.EASEINBACK
+                'easeOutBack': PLUGIN_SQUIDGRID.EASEOUTBACK
+                'easeInOutBack': PLUGIN_SQUIDGRID.EASEINOUTBACK
+            LoadingWord:
+              type: text
+              size: medium
+              label: PLUGIN_SQUIDGRID.LOADING
+              placeholder: PLUGIN_SQUIDGRID.LOADING_DESC
+            loadMoreWord:
+              type: text
+              size: medium
+              label: PLUGIN_SQUIDGRID.LOAD_MORE
+              placeholder: PLUGIN_SQUIDGRID.LOAD_MORE_DESC
+
+            noMoreEntriesWord:
+              type: text
+              size: medium
+              label: PLUGIN_SQUIDGRID.NO_MORE_ENTRIES
+              placeholder: PLUGIN_SQUIDGRID.NO_MORE_ENTRIES_DESC
+
 
         resolutions_tab:
           type: tab
@@ -175,55 +234,17 @@ form:
                   validate:
                       min: 0
                       max: 100
-            prepend_domain:
-              type: toggle
-              label: PLUGIN_SQUIDGRID.PREPEND_DOMAIN
-              help: PLUGIN_SQUIDGRID.PREPEND_DOMAIN_HELP
-              hightlight: 1
-              default: 0
-              options:
-                1: PLUGIN_SQUIDGRID._YES
-                0: PLUGIN_SQUIDGRID._NO
-              validate:
-                type: bool
-            hide_alias:
-              type: toggle
-              label: PLUGIN_SQUIDGRID.HIDE_ALIAS
-              help: PLUGIN_SQUIDGRID.HIDE_ALIAS_HELP
-              hightlight: 1
-              default: 0
-              options:
-                1: PLUGIN_SQUIDGRID._YES
-                0: PLUGIN_SQUIDGRID._NO
-              validate:
-                type: bool
-            track_disabled_js:
-              type: toggle
-              label: PLUGIN_SQUIDGRID.TRACK_DISABLED_JS
-              hightlight: 1
-              default: 0
-              options:
-                1: PLUGIN_SQUIDGRID._YES
-                0: PLUGIN_SQUIDGRID._NO
-              validate:
-                type: bool
 
         advanced:
           type: tab
           title: PLUGIN_SQUIDGRID.SECTION_ADVANCED
           fields:
 
-            track_custom_vars:
-              type: array
-              size: large
-              label: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS
-              help: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_HELP
-              placeholder_key: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_PLACEHOLDER_1
-              placeholder_value: PLUGIN_SQUIDGRID.TRACK_CUSTOM_VARS_PLACEHOLDER_2
-            do_not_track:
+            deepLinkingOnPopup:
               type: toggle
-              label: PLUGIN_SQUIDGRID.DO_NOT_TRACK
-              help: PLUGIN_SQUIDGRID.DO_NOT_TRACK_HELP
+              label: PLUGIN_SQUIDGRID.DEEP_LINK_POPUP
+              help: PLUGIN_SQUIDGRID.DEEP_LINK_POPUP_HELP
+              description: PLUGIN_SQUIDGRID.DESCRIPTION_DEEP_LINK
               hightlight: 1
               default: 0
               options:
@@ -231,10 +252,23 @@ form:
                 0: PLUGIN_SQUIDGRID._NO
               validate:
                 type: bool
-            disable_tracking_cookies:
+            deepLinkingOnFilter:
               type: toggle
-              label: PLUGIN_SQUIDGRID.DISABLE_TRACKING_COOKIES
-              help: PLUGIN_SQUIDGRID.DISABLE_TRACKING_COOKIES_HELP
+              label: PLUGIN_SQUIDGRID.DEEP_LINK_FILTER
+              help: PLUGIN_SQUIDGRID.DEEP_LINK_FILTER_HELP
+              description: PLUGIN_SQUIDGRID.DESCRIPTION_DEEP_LINK
+              hightlight: 1
+              default: 0
+              options:
+                1: PLUGIN_SQUIDGRID._YES
+                0: PLUGIN_SQUIDGRID._NO
+              validate:
+                type: bool
+            deepLinkingOnSearch:
+              type: toggle
+              label: PLUGIN_SQUIDGRID.DEEP_LINK_SEARCH
+              help: PLUGIN_SQUIDGRID.DEEP_LINK_SEARCH_HELP
+              description: PLUGIN_SQUIDGRID.DESCRIPTION_DEEP_LINK
               hightlight: 1
               default: 0
               options:
