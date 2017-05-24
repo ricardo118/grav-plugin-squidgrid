@@ -11,47 +11,205 @@ form:
           type: tab
           title: Grid
           fields:
-            header.grid:
-              name: grid
-              type: list
-              style: vertical
-              label: Grid
+            squidgrid:
+              type: section
+              title: PLUGIN_SQUIDGRID.GRID
+              underline: true
               fields:
-                .title:
-                  type: text
-                  label: Title
-                .content:
-                  type: textarea
-                  label: Content
-                .url:
-                  type: pages
-                  size: medium
-                  classes: fancy
-                  label: Read more URL
-                  show_all: false
-                  show_modular: true
-                  show_root: false
-                .category:
-                    type: selectize
-                    size: large
-                    label: Category
-                    classes: fancy
-                    validate:
-                        type: commalist
-                .enabled:
-                  type: toggle
-                  label: Replace with Image
-                  help: Replace the whole grid with a picture. URL will be used for click through.
-                  options:
-                    1: PLUGIN_ADMIN.YES
-                    0: PLUGIN_ADMIN.NO
-                  validate:
-                    type: bool
-                .image:
-                  type: file
-                  label: Image Upload
-                  destination: '@self'
-                  multiple: false
-                  filesize: 1
-                  accept:
-                    - image/*
+                header.squidgrid.grid:
+                  name: grid
+                  type: list
+                  style: vertical
+                  fields:
+                    .title:
+                      type: text
+                      label: Title
+                    .content:
+                      type: textarea
+                      label: Content
+                    .url:
+                      type: pages
+                      size: medium
+                      classes: fancy
+                      label: Read more URL
+                      show_all: false
+                      show_modular: true
+                      show_root: false
+                    .category:
+                        type: selectize
+                        size: large
+                        label: Category
+                        classes: fancy
+                        validate:
+                            type: commalist
+                    .enabled:
+                      type: toggle
+                      label: Replace with Image
+                      help: Replace the whole grid with a picture. URL will be used for click through.
+                      options:
+                        1: PLUGIN_ADMIN.YES
+                        0: PLUGIN_ADMIN.NO
+                      validate:
+                        type: bool
+                    .image:
+                      type: file
+                      label: Image Upload
+                      destination: '@self'
+                      multiple: false
+                      filesize: 1
+                      accept:
+                        - image/*
+
+                config:
+                  type: section
+                  title: PLUGIN_SQUIDGRID.SECTION_CONFIGURATION
+                  underline: true
+                  fields:
+                    header.squidgrid.config.boxesToLoadStart:
+                      type: text
+                      size: x-small
+                      append: PLUGIN_SQUIDGRID.BOXES
+                      label: PLUGIN_SQUIDGRID.BOXES_LOAD_START
+                      help: PLUGIN_SQUIDGRID.BOXES_LOAD_START_HELP
+                      toggleable: true
+                      placeholder: "8"
+                      validate:
+                        type: number
+                    header.squidgrid.config.boxesToLoad:
+                      type: text
+                      size: x-small
+                      append: PLUGIN_SQUIDGRID.BOXES
+                      label: PLUGIN_SQUIDGRID.BOXES_LOAD
+                      help: PLUGIN_SQUIDGRID.BOXES_LOAD_HELP
+                      toggleable: true
+                      placeholder: "4"
+                      validate:
+                        type: number
+                    header.squidgrid.config.columns:
+                      type: text
+                      size: x-small
+                      append: PLUGIN_SQUIDGRID.COLUMN
+                      label: PLUGIN_SQUIDGRID.COLUMNS
+                      help: PLUGIN_SQUIDGRID.COLUMNS_HELP
+                      toggleable: true
+                      placeholder: "4"
+                      validate:
+                        type: number
+                    header.squidgrid.config.lazyLoad:
+                      type: toggle
+                      label: PLUGIN_SQUIDGRID.LAZY_LOAD
+                      help: PLUGIN_SQUIDGRID.LAZY_LOAD_HELP
+                      toggleable: true
+                      hightlight: 1
+                      options:
+                        1: PLUGIN_SQUIDGRID.ENABLED
+                        0: PLUGIN_SQUIDGRID.DISABLED
+                      validate:
+                        type: bool
+                    header.squidgrid.config.horizontalSpaceBetweenBoxes:
+                      type: range
+                      append: 'px'
+                      label: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE
+                      help: PLUGIN_SQUIDGRID.HORIZONTAL_SPACE_HELP
+                      toggleable: true
+                      classes: x-small
+                      default: 15
+                      validate:
+                          min: 0
+                          max: 100
+                    header.squidgrid.config.verticalSpaceBetweenBoxes:
+                      type: range
+                      append: 'px'
+                      label: PLUGIN_SQUIDGRID.VERTICAL_SPACE
+                      help: PLUGIN_SQUIDGRID.VERTICAL_SPACE_HELP
+                      toggleable: true
+                      classes: x-small
+                      default: 15
+                      validate:
+                          min: 0
+                          max: 100
+                    header.squidgrid.config.overlayEffect:
+                      type: select
+                      label: PLUGIN_SQUIDGRID.OVERLAY_EFFECT
+                      help: PLUGIN_SQUIDGRID.OVERLAY_EFFECT_HELP
+                      toggleable: true
+                      size: medium
+                      default: fade
+                      options:
+                        fade: PLUGIN_SQUIDGRID.FADE
+                        push-up: PLUGIN_SQUIDGRID.PUSH_UP
+                        push-down: PLUGIN_SQUIDGRID.PUSH_DOWN
+                        'push-up-100%': PLUGIN_SQUIDGRID.PUSH_UP_100
+                        'push-down-100%': PLUGIN_SQUIDGRID.PUSH_DOWN_100
+                        reveal-top: PLUGIN_SQUIDGRID.REVEAL_TOP
+                        reveal-bottom: PLUGIN_SQUIDGRID.REVEAL_BOTTOM
+                        'reveal-top-100%': PLUGIN_SQUIDGRID.REVEAL_TOP_100
+                        'reveal-bottom-100%': PLUGIN_SQUIDGRID.REVEAL_BOTTOM_100
+                        direction-aware: PLUGIN_SQUIDGRID.DIRECTION_AWARE
+                        direction-aware-fade: PLUGIN_SQUIDGRID.DIRECTION_AWARE_FADE
+                        direction-right: PLUGIN_SQUIDGRID.DIRECTION_RIGHT
+                        direction-left: PLUGIN_SQUIDGRID.DIRECTION_LEFT
+                        direction-top: PLUGIN_SQUIDGRID.DIRECTION_TOP
+                        direction-bottom: PLUGIN_SQUIDGRID.DIRECTION_BOTOM
+                    header.squidgrid.config.overlaySpeed:
+                      type: range
+                      append: 'ms'
+                      label: PLUGIN_SQUIDGRID.OVERLAY_SPEED
+                      help: PLUGIN_SQUIDGRID.OVERLAY_SPEED_HELP
+                      toggleable: true
+                      classes: x-small
+                      default: 200
+                      validate:
+                          min: 0
+                          max: 4000
+                    header.squidgrid.config.overlayEasing:
+                      type: select
+                      label: PLUGIN_SQUIDGRID.OVERLAY_EASING
+                      description: PLUGIN_SQUIDGRID.OVERLAY_EASING_HELP
+                      toggleable: true
+                      size: medium
+                      default: default
+                      options:
+                        'default': PLUGIN_SQUIDGRID.DEFAULT
+                        'easeInCubic': PLUGIN_SQUIDGRID.EASEINCUBIC
+                        'easeOutCubic': PLUGIN_SQUIDGRID.EASEOUTCUBIC
+                        'easeInOutCubic': PLUGIN_SQUIDGRID.EASEINOUTCUBIC
+                        'easeInCirc': PLUGIN_SQUIDGRID.EASEINCIRC
+                        'easeOutCirc': PLUGIN_SQUIDGRID.EASEOUTCIRC
+                        'easeInOutCirc': PLUGIN_SQUIDGRID.EASEINOUTCIRC
+                        'easeInExpo': PLUGIN_SQUIDGRID.EASEINEXPO
+                        'easeOutExpo': PLUGIN_SQUIDGRID.EASEOUTEXPO
+                        'easeInOutExpo': PLUGIN_SQUIDGRID.EASEINOUTEXPO
+                        'easeInQuad': PLUGIN_SQUIDGRID.EASEINQUAD
+                        'easeOutQuad': PLUGIN_SQUIDGRID.EASEOUTQUAD
+                        'easeInOutQuad': PLUGIN_SQUIDGRID.EASEINOUTQUAD
+                        'easeInQuart': PLUGIN_SQUIDGRID.EASEINQUART
+                        'easeOutQuart': PLUGIN_SQUIDGRID.EASEOUTQUART
+                        'easeInOutQuart': PLUGIN_SQUIDGRID.EASEINOUTQUART
+                        'easeInQuint': PLUGIN_SQUIDGRID.EASEINQUINT
+                        'easeOutQuint': PLUGIN_SQUIDGRID.EASEOUTQUINT
+                        'easeInOutQuint': PLUGIN_SQUIDGRID.EASEINOUTQUINT
+                        'easeInSine': PLUGIN_SQUIDGRID.EASEINSINE
+                        'easeOutSine': PLUGIN_SQUIDGRID.EASEOUTSINE
+                        'easeInOutSine': PLUGIN_SQUIDGRID.EASEINOUTSINE
+                        'easeInBack': PLUGIN_SQUIDGRID.EASEINBACK
+                        'easeOutBack': PLUGIN_SQUIDGRID.EASEOUTBACK
+                        'easeInOutBack': PLUGIN_SQUIDGRID.EASEINOUTBACK
+                    header.squidgrid.config.LoadingWord:
+                      type: text
+                      size: medium
+                      label: PLUGIN_SQUIDGRID.LOADING
+                      placeholder: PLUGIN_SQUIDGRID.LOADING_DESC
+                      toggleable: true
+                    header.squidgrid.config.loadMoreWord:
+                      type: text
+                      size: medium
+                      label: PLUGIN_SQUIDGRID.LOAD_MORE
+                      placeholder: PLUGIN_SQUIDGRID.LOAD_MORE_DESC
+                      toggleable: true
+                    header.squidgrid.config.noMoreEntriesWord:
+                      type: text
+                      size: medium
+                      label: PLUGIN_SQUIDGRID.NO_MORE_ENTRIES
+                      placeholder: PLUGIN_SQUIDGRID.NO_MORE_ENTRIES_DESC
+                      toggleable: true

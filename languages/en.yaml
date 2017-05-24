@@ -103,3 +103,4 @@ PLUGIN_SQUIDGRID:
   LOAD_MORE_DESC: "Load More"
   NO_MORE_ENTRIES: "The 'No More Entries' word"
   NO_MORE_ENTRIES_DESC: "No More Entries"
+  GRID: "Squid Grid"
