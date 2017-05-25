@@ -26,6 +26,7 @@ class SquidGridPlugin extends Plugin
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
             'onGetPageBlueprints'  => ['onGetPageBlueprints', 0],
+            'onPageInitialized ' => ['onPageInitialized ', 0],
             'onPageContentRaw'  => ['onPageContentRaw', 0]
         ];
     }
@@ -76,7 +77,7 @@ class SquidGridPlugin extends Plugin
         }else {
 //            $squidgrid = $this->config->get('plugins.squidgrid');
         }
-//        dump($squidgrid);
+
     }
     /**
      * Add page blueprints
@@ -111,15 +112,15 @@ class SquidGridPlugin extends Plugin
         // Enable the main event we are interested in
         $this->enable([
             'onAssetsInitialized' => ['onAssetsInitialized', 0],
+            'onPageInitialized ' => ['onPageInitialized ', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
         ]);
     }
-
     public function onAssetsInitialized() {
+
         $assets = $this->grav['assets'];
         $assets->addCss('user/plugins/squidgrid/css/mediaBoxes.css');
         $assets->addJs('jquery', 101);
-
         $assets->addJs('user/plugins/squidgrid/js/vendor/Isotope/jquery.isotope.min.js', ['loading' => 'defer', 'group' => 'bottom']);
         $assets->addJs('user/plugins/squidgrid/js/vendor/imagesLoaded/jquery.imagesLoaded.min.js', ['loading' => 'defer', 'group' => 'bottom']);
         $assets->addJs('user/plugins/squidgrid/js/vendor/Transit/jquery.transit.min.js', ['loading' => 'defer', 'group' => 'bottom']);
@@ -132,4 +133,10 @@ class SquidGridPlugin extends Plugin
         $assets->addJs('user/plugins/squidgrid/js/jquery.mediaBoxes.js', ['loading' => 'defer', 'group' => 'bottom']);
 
     }
+    public function onPageInitialized() {
+        dump('test');
+    }
 }
+
+//        if ($this->grav['page']->template() == 'squidgrid') {
+//        }

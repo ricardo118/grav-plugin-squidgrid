@@ -1,0 +1,87 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set settings = {} %}
+
+{% if header.squidgrid %}
+    {% set settings =  header.squidgrid %}
+{% endif %}
+
+{% if page.header.squidgrid %}
+    {% set settings = settings|merge(page.header.squidgrid) %}
+{%  endif %}
+
+{% set settings = config.get('plugins.squidgrid')|merge(settings) %}
+{% if settings.unique_id %}{% set unique_id = settings.unique_id %}{% else %}{% set unique_id = 'sg-' ~ random_string(10) %}{% endif %}
+
+<script>
+    $(document).ready(function() {
+        $('#{{ unique_id }}').mediaBoxes({
+            boxesToLoadStart: {{ settings.boxesToLoadStart|default(8) }},
+            boxesToLoad: {{ settings.boxesToLoad|default(4) }},
+            lazyLoad: {{ settings.lazyLoad|default('true') }},
+            horizontalSpaceBetweenBoxes: {{ settings.horizontalSpaceBetweenBoxes|default(15) }},
+            verticalSpaceBetweenBoxes: {{ settings.verticalSpaceBetweenBoxes|default(15) }},
+            columnWidth: '{{ settings.columnWidth|default('auto') }}',
+            columns: {{ settings.columns|default(4) }},
+            multipleFilterLogic: '{{ settings.multipleFilterLogic|default('AND') }}',
+            filterContainer: '{{ settings.filterContainer|default('#filter') }}',
+            search: '{{ settings.search|default('.media-boxes-search') }}',
+            searchTarget: '{{ settings.searchTarget|default('.media-box-content') }}',
+            sortContainer: '{{ settings.sortContainer|default('') }}',
+            minBoxesPerFilter: {{ settings.minBoxesPerFilter|default(0) }},
+            waitUntilThumbWithRatioLoads: {{ settings.waitUntilThumbWithRatioLoads|default('true') }},
+            waitForAllThumbsNoMatterWhat: {{ settings.waitForAllThumbsNoMatterWhat|default('false') }},
+            thumbnailOverlay: {{ settings.thumbnailOverlay|default('true') }},
+            overlayEffect: '{{ settings.overlayEffect|default('fade') }}',
+            overlaySpeed: {{ settings.overlaySpeed|default(200) }},
+            overlayEasing: '{{ settings.overlayEasing|default('default') }}',
+            showOnlyLoadedBoxesInPopup: {{ settings.showOnlyLoadedBoxesInPopup|default('false') }},
+            considerFilteringInPopup: {{ settings.considerFilteringInPopup|default('true') }},
+            deepLinkingOnPopup: {{ settings.deepLinkingOnPopup|default('true') }},
+            deepLinkingOnFilter: {{ settings.deepLinkingOnFilter|default('true') }},
+            deepLinkingOnSearch: {{ settings.deepLinkingOnSearch|default('false') }},
+            gallery: {{ settings.gallery|default('true') }},
+            LoadingWord: '{{ settings.enableDrag|default('Loading...') }}',
+            loadMoreWord: '{{ settings.enableDrag|default('Load More') }}',
+            noMoreEntriesWord: '{{ settings.enableDrag|default('No More Entries') }}'
+        });
+    });
+</script>
+
+    <!-- Add page content on top, in case user wants to write something before the grid -->
+    {{ page.content }}
+    {#{% if settings.enableSearch %}#}
+        <input type="text" id="search" class="media-boxes-search" placeholder="Search By Title">
+    {#{% endif %}#}
+
+    {% if settings.enableFilter %}
+        <!-- The filter bar -->
+        <ul class="media-boxes-filter" id="filter">
+            <li><a class="selected" href="#" data-filter="*">All</a></li>
+            <li><a href="#" data-filter=".category1">Category 1</a></li>
+            <li><a href="#" data-filter=".three">Category 2</a></li>
+            <li><a href="#" data-filter=".category3">Category 3</a></li>
+        </ul>
+    {% endif %}
+
+
+    <!-- The grid with media boxes -->
+    <div id="{{ unique_id }}">
+
+        {% for box in page.header.squidgrid.grid %}
+        <!-- --------- MEDIA BOX MARKUP --------- -->
+            {% if settings.slider_type == 'text' %}
+                <div class="media-box {{ box.category|join(' ')}}">
+                    <h3 class="media-box-title">{{ box.title|markdown }}</h3>
+                    <div class="media-box-content">{{ box.content|markdown }}</div>
+                </div>
+            {% else %}
+                {% set thumbnail = box.image|first %}
+                <div class="media-box-image">
+                    <div class="thumbnail-overlay" data-thumbnail="http://artepiscinas.pt/upload/products/355/medium_82753.jpg"></div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>

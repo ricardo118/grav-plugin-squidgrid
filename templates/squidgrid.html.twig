@@ -14,10 +14,8 @@
 {% if settings.unique_id %}{% set unique_id = settings.unique_id %}{% else %}{% set unique_id = 'sg-' ~ random_string(10) %}{% endif %}
 
 {% block content %}
-
     <!-- Add page content on top, in case user wants to write something before the grid -->
     {{ page.content }}
-
     {#{% if settings.enableSearch %}#}
         <input type="text" id="search" class="media-boxes-search" placeholder="Search By Title">
     {#{% endif %}#}
@@ -35,150 +33,150 @@
 
     <!-- The grid with media boxes -->
     <div id="{{ unique_id }}">
-        {#{% for box in page.header.grid %}#}
-        {#<!-- --------- MEDIA BOX MARKUP --------- -->#}
-        {#<div class="media-box {{ box.category|join(' ')}}">#}
-            {#<h3 class="media-box-title">{{ box.title|markdown }}</h3>#}
-            {#<div class="media-box-content">{{ box.content|markdown }}</div>#}
+        {% for box in page.header.squidgrid.grid %}
+        <!-- --------- MEDIA BOX MARKUP --------- -->
+        <div class="media-box {{ box.category|join(' ')}}">
+            <h3 class="media-box-title">{{ box.title|markdown }}</h3>
+            <div class="media-box-content">{{ box.content|markdown }}</div>
 
-            {#{% if box.enabled %}#}
-                {#{% set thumbnail = box.image|first %}#}
-                {#<div class="media-box-image">#}
-                    {#<div class="thumbnail-overlay" data-thumbnail="http://artepiscinas.pt/upload/products/355/medium_82753.jpg"></div>#}
+            {% if box.enabled %}
+                {% set thumbnail = box.image|first %}
+                <div class="media-box-image">
+                    <div class="thumbnail-overlay" data-thumbnail="http://artepiscinas.pt/upload/products/355/medium_82753.jpg"></div>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box" data-columns="2">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.9" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>#}
+
+                {#<div class="thumbnail-overlay overlay-always-visible overlay-text-left">#}
+                    {#<div class="media-box-title">Lorem ipsum dolor</div>#}
+                    {#<div class="media-box-date">December 10, 2015</div>#}
+                    {#<div class="media-box-text">#}
+                        {#Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ipsam reiciendis beatae doloribus laudantium harum debitis, iste modi. Quam sed fugit eaque voluptate minima impedit accusamus labore obcaecati hic amet.#}
+                    {#</div>#}
+                    {#<a href="#">READ MORE</a>#}
                 {#</div>#}
-            {#{% endif %}#}
+            {#</div>#}
         {#</div>#}
-        {#{% endfor %}#}
-    {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box" data-columns="2">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.9" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-27.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-27.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-                <div class="thumbnail-overlay overlay-always-visible overlay-text-left">
-                    <div class="media-box-title">Lorem ipsum dolor</div>
-                    <div class="media-box-date">December 10, 2015</div>
-                    <div class="media-box-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ipsam reiciendis beatae doloribus laudantium harum debitis, iste modi. Quam sed fugit eaque voluptate minima impedit accusamus labore obcaecati hic amet.
-                    </div>
-                    <a href="#">READ MORE</a>
-                </div>
-            </div>
-        </div>
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-38.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-38.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-27.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-27.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box" data-columns="2">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-49.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-49.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-38.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-38.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box" data-columns="2">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-49.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-49.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+                {#<a href="#">#}
+                    {#<div class="thumbnail-overlay overlay-always-visible social">#}
+                        {#<div class="media-box-big-icon"><span class="fa fa-facebook"></span></div>#}
+                        {#<div class="media-box-title">Facebook <small>Like Us</small></div>#}
+                        {#<div class="media-box-text">Visit us on Facebook</div>#}
+                    {#</div>#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>#}
 
-                <a href="#">
-                    <div class="thumbnail-overlay overlay-always-visible social">
-                        <div class="media-box-big-icon"><span class="fa fa-facebook"></span></div>
-                        <div class="media-box-title">Facebook <small>Like Us</small></div>
-                        <div class="media-box-text">Visit us on Facebook</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                {#<div class="thumbnail-overlay overlay-always-visible">#}
+                    {#Lorem ipsum dolor sit amet consectetur adipisicing elit officiis enim facere ut.#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>#}
 
-                <div class="thumbnail-overlay overlay-always-visible">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit officiis enim facere ut.
-                </div>
-            </div>
-        </div>
+                {#<a href="#">#}
+                    {#<div class="thumbnail-overlay overlay-always-visible social">#}
+                        {#<div class="media-box-big-icon"><span class="fa fa-twitter"></span></div>#}
+                        {#<div class="media-box-title">Twitter <small>Follow Us</small></div>#}
+                        {#<div class="media-box-text">Visit us on Twitter</div>#}
+                    {#</div>#}
+                {#</a>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-9.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-9.jpg" data-title="Aed do eiusmod"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-                <a href="#">
-                    <div class="thumbnail-overlay overlay-always-visible social">
-                        <div class="media-box-big-icon"><span class="fa fa-twitter"></span></div>
-                        <div class="media-box-title">Twitter <small>Follow Us</small></div>
-                        <div class="media-box-text">Visit us on Twitter</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box" data-columns="2">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.9" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="1" data-thumbnail="gallery/thumbnails/thumb-9.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-9.jpg" data-title="Aed do eiusmod"></div>
-            </div>
-        </div>
+                {#<div class="thumbnail-overlay overlay-always-visible overlay-text-left">#}
+                    {#<div class="media-box-title">Fugiat facilis doloremque</div>#}
+                    {#<div class="media-box-date">December 10, 2015</div>#}
+                    {#<div class="media-box-text">#}
+                        {#Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ipsam reiciendis beatae doloribus laudantium harum debitis, iste modi. Quam sed fugit eaque voluptate minima impedit accusamus labore obcaecati hic amet.#}
+                    {#</div>#}
+                    {#<a href="#">READ MORE</a>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box" data-columns="2">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.9" data-thumbnail="gallery/thumbnails/thumb-1.jpg"></div>
-
-                <div class="thumbnail-overlay overlay-always-visible overlay-text-left">
-                    <div class="media-box-title">Fugiat facilis doloremque</div>
-                    <div class="media-box-date">December 10, 2015</div>
-                    <div class="media-box-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ipsam reiciendis beatae doloribus laudantium harum debitis, iste modi. Quam sed fugit eaque voluptate minima impedit accusamus labore obcaecati hic amet.
-                    </div>
-                    <a href="#">READ MORE</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box" data-columns="2">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-20.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-20.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box" data-columns="2">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-20.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-20.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-55.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-55.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-55.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-55.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-        <!-- -------------------------- BOX MARKUP -------------------------- -->
-        <div class="media-box">
-            <div class="media-box-image">
-                <div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-50.jpg"></div>
-                <div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-50.jpg" data-title="Bncididunt ut labore"></div>
-            </div>
-        </div>
+        {#<!-- -------------------------- BOX MARKUP -------------------------- -->#}
+        {#<div class="media-box">#}
+            {#<div class="media-box-image">#}
+                {#<div data-width="1" data-height="0.5" data-thumbnail="gallery/thumbnails/thumb-50.jpg"></div>#}
+                {#<div class="thumbnail-overlay mb-open-popup" data-src="gallery/img-50.jpg" data-title="Bncididunt ut labore"></div>#}
+            {#</div>#}
+        {#</div>#}
 
-    </div> <!-- #grid -->
+    {#</div> <!-- #grid -->#}
 {% endblock %}
