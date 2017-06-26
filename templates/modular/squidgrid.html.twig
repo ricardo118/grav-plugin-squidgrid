@@ -64,13 +64,12 @@
         </ul>
     {% endif %}
 
-
     <!-- The grid with media boxes -->
     <div id="{{ unique_id }}">
 
         {% for box in page.header.squidgrid.grid %}
         <!-- --------- MEDIA BOX MARKUP --------- -->
-            {% if settings.slider_type == 'text' %}
+            {% if box.type %}
                 <div class="media-box {{ box.category|join(' ')}}">
                     <h3 class="media-box-title">{{ box.title|markdown }}</h3>
                     <div class="media-box-content">{{ box.content|markdown }}</div>

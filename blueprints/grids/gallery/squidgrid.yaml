@@ -1,0 +1,23 @@
+title: gallery
+'@extends':
+    type: basegrid
+    context: plugins://squidgrid/blueprints
+form:
+  fields:
+    tabs:
+      fields:
+        grid:
+          fields:
+            squidgrid:
+              fields:
+                header.squidgrid.grid:
+                  fields:
+                    .image:
+                      type: filepicker
+                      folder: '@self'
+                      classes: sg-image
+                      label: PLUGIN_SQUIDGRID.ITEM_FILEPICKER
+                      preview_images: true
+                      accept:
+                        - .png
+                        - .jpg

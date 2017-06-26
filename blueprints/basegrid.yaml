@@ -25,90 +25,22 @@ form:
                   fields:
                     .title:
                       type: text
-                      label: PLUGIN_SQUIDGRID.ITEM_TITLE
-                    .type:
-                      type: radio
-                      size: long
-                      label: PLUGIN_SQUIDGRID.TYPE
-                      help: PLUGIN_SQUIDGRID.TYPE_HELP
-                      options:
-                        image: PLUGIN_SQUIDGRID.ITEM_IMAGE
-                        text: PLUGIN_SQUIDGRID.ITEM_TEXT
-                        both: PLUGIN_SQUIDGRID.ITEM_BOTH
-                    .content:
-                      type: textarea
-                      classes: sg-text
-                      label: PLUGIN_SQUIDGRID.ITEM_CONTENT
-                    .url:
-                      type: pages
-                      size: medium
-                      classes: sg-text
-                      label: PLUGIN_SQUIDGRID.ITEM_READMORE
-                      show_all: false
-                      show_modular: true
-                      show_root: false
-                    .category:
-                      type: selectize
-                      size: large
-                      classes: sg-text
-                      label: PLUGIN_SQUIDGRID.CATEGORY
-                      validate:
-                        type: commalist
-                    .tags:
-                      type: selectize
-                      size: large
-                      classes: sg-text
-                      label: PLUGIN_SQUIDGRID.TAGS
-                      validate:
-                        type: commalist
-                    .image:
-                      type: filepicker
-                      folder: '@self'
-                      classes: sg-image
-                      label: PLUGIN_SQUIDGRID.ITEM_FILEPICKER
-                      preview_images: true
-                      accept:
-                        - .png
-                        - .jpg
-                    .spacer:
-                        type: spacer
-                        text: PLUGIN_SQUIDGRID.ITEM_READ_MORE
-                        title: PLUGIN_SQUIDGRID.EXTRAS
-                        underline: true
-                    .column:
-                      type: text
-                      label: PLUGIN_SQUIDGRID.ITEM_COLUMN
-                      description: PLUGIN_SQUIDGRID.ITEM_COLUMN_HELP
-                      classes: sg-extras
-                      size: medium
-                      append: PLUGIN_SQUIDGRID.COLUMNS
-                      validate:
-                        type: number
-                    .height:
-                      type: range
-                      label: PLUGIN_SQUIDGRID.ITEM_HEIGHT_RATIO
-                      description: PLUGIN_SQUIDGRID.ITEM_HEIGHT_RATIO_HELP
-                      classes: sg-extras
-                      step: 0.1
-                      validate:
-                        min: 0
-                        max: 1
-                        step: 0.1
-                    .width:
-                      type: range
-                      label: PLUGIN_SQUIDGRID.ITEM_WIDTH_RATIO
-                      description: PLUGIN_SQUIDGRID.ITEM_WIDTH_RATIO_HELP
-                      classes: sg-extras
-                      step: 0.1
-                      validate:
-                        min: 0
-                        max: 1
-                        step: 0.1
+                      label: Title
                 config:
                   type: section
                   title: PLUGIN_SQUIDGRID.SECTION_CONFIGURATION
                   underline: true
                   fields:
+                    header.squidgrid.config.theme:
+                      type: select
+                      size: medium
+                      label: PLUGIN_SQUIDGRID.THEME
+                      help: PLUGIN_SQUIDGRID.THEME_HELP
+                      toggleable: true
+                      options:
+                        basic: PLUGIN_SQUIDGRID.THEME.BASIC
+                        homepage: PLUGIN_SQUIDGRID.THEME.HOMEPAGE
+                        gallery: PLUGIN_SQUIDGRID.THEME.GALLERY
                     header.squidgrid.config.boxesToLoadStart:
                       type: text
                       size: x-small
@@ -239,7 +171,7 @@ form:
                         'easeInBack': PLUGIN_SQUIDGRID.EASEINBACK
                         'easeOutBack': PLUGIN_SQUIDGRID.EASEOUTBACK
                         'easeInOutBack': PLUGIN_SQUIDGRID.EASEINOUTBACK
-                    header.squidgrid.config.LoadingWord:
+                    header.squidgrid.config.loadingWord:
                       type: text
                       size: medium
                       label: PLUGIN_SQUIDGRID.LOADING

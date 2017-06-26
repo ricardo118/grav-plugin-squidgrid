@@ -165,7 +165,7 @@ form:
                 'easeInBack': PLUGIN_SQUIDGRID.EASEINBACK
                 'easeOutBack': PLUGIN_SQUIDGRID.EASEOUTBACK
                 'easeInOutBack': PLUGIN_SQUIDGRID.EASEINOUTBACK
-            LoadingWord:
+            loadingWord:
               type: text
               size: medium
               label: PLUGIN_SQUIDGRID.LOADING
