@@ -47,5 +47,3 @@ enabled: true
 ## To Do
 
 - [ ] Future plans, if any
-- testing
-
